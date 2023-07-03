@@ -1,5 +1,23 @@
-LHL Node Skeleton
-=========
+# Resource Wall
+
+## Pinterest for learners
+
+Allow learners to save learning resources like tutorials, blogs and videos in a central place that is publicly available to any user.
+
+### Requirements:
+Users should be able to:
+* save an external URL along with a title and description
+* search for already-saved resources created by any user
+* categorize any resource under a topic
+* comment on any resource
+* rate any resource
+* like any resource
+* view all their own and all liked resources on one page ("My resources")
+* register, log in, log out and update their profile
+
+---
+
+## Inital project (skeleton) setup notes:
 
 ## Project Setup
 
