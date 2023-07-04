@@ -80,7 +80,7 @@ let resources = {
     url: "https://www.pexels.com/photo/short-coated-tan-dog-2253275/",
     title: "My Dog",
     description: "My 5 year old dog Max",
-    type: "Picture",
+    type: "Blog",
     rating: 7,
     like: true
   }
@@ -114,7 +114,7 @@ let comments = {
 
 app.get('/', (req, res) => {
   const templateVars = {users: users, resources: resources, resources_topics: resources_topics, topics: topics, comments: comments};
-  res.render("urls_index", templateVars);
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
