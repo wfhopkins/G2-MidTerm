@@ -16,6 +16,14 @@ Users should be able to:
 * register, log in, log out and update their profile
 
 ---
+### To-do list
+* create tables
+* populate with fake data
+* hook up to db (with 'pg')
+* create route list (from mock-up)
+* create html/css
+  
+---
 
 ## Inital project (skeleton) setup notes:
 
