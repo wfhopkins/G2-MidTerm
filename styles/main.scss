@@ -24,7 +24,7 @@ nav {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #logo {
@@ -36,7 +36,7 @@ nav {
   display: flex;
   padding: 1em;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .button_primary {
@@ -48,7 +48,7 @@ nav {
 .selectors {
   display: flex;
   width: 90%;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .search_bar {
