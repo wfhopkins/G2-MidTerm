@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Web server config
-const sassMiddleware = require('./lib/sass-middleware');
+// const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -62,7 +62,7 @@ let users = {
     password: "purple-dinosaur",
     first_name: "William",
     last_name: "Hopkins"
-  }, 
+  },
   "3": {
     id: "3",
     username: "user3",
