@@ -34,21 +34,27 @@ nav {
 
 .menu{
   display: flex;
-  padding: 1em;
+  padding: 1.5em;
   align-items: center;
   justify-content: space-around;
+}
+
+.account_avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .button_primary {
   padding: 10px;
 }
 
-
-
+//SEARCH AND SORT: Second row of header section. vanished under header when scroll down (tbd)
 .selectors {
   display: flex;
   width: 90%;
   justify-content: space-around;
+  margin-bottom: 10px;;
 }
 
 .search_bar {
@@ -57,12 +63,12 @@ nav {
 }
 
 #topics {
-  padding: 5px;
+width: 15%;
 }
 
 
 
-
+//RESOURSE FEED: Where all resources appear in 3 columns.
 .main_container {
   display: flex;
   flex-wrap: wrap;
@@ -79,5 +85,5 @@ nav {
   border-style: solid;
   border-color: red;
   width: 30%;
-  height: 350px;
+  height: 450px;
 }
