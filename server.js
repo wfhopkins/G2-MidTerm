@@ -44,8 +44,77 @@ app.use('/users', usersRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+
+// Our database of users
+let users = {
+  "1": {
+    id: "1",
+    username: "user1",
+    email: "user1@example.com",
+    password: "purple-rabbit-dinosaur",
+    first_name: "David",
+    last_name: "Fatokun"
+  },
+  "2": {
+    id: "2",
+    username: "user2",
+    email: "user2@example.com",
+    password: "purple-dinosaur",
+    first_name: "William",
+    last_name: "Hopkins"
+  }, 
+  "3": {
+    id: "3",
+    username: "user3",
+    email: "user3@example.com",
+    password: "rabbit-dinosaur",
+    first_name: "Jordan",
+    last_name: "Dennis"
+}
+};
+
+let resources = {
+  "1": {
+    id: "1",
+    users_id: "1",
+    url: "https://www.pexels.com/photo/short-coated-tan-dog-2253275/",
+    title: "My Dog",
+    description: "My 5 year old dog Max",
+    type: "Blog",
+    rating: 7,
+    like: true
+  }
+};
+
+let resources_topics = {
+  "1": {
+    id: "1",
+    resources_id: "1",
+    topics_id: "1"
+  }
+};
+
+let topics = {
+  "1": {
+    id: "1",
+    name: "Dogs",
+    resources_id: "1"
+  }
+};
+
+let comments = {
+  "1": {
+    id: "1",
+    users_id: "1",
+    resources_id: "1",
+    comment: "I Love My Dog"
+  }
+};
+
+
 app.get('/', (req, res) => {
-  res.render('index');
+  const templateVars = {users: users, resources: resources, resources_topics: resources_topics, topics: topics, comments: comments};
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
