@@ -17,8 +17,8 @@ Users should be able to:
 
 ---
 ### To-do list
-* create tables
-* populate with fake data
+* create table schema
+* populate db with fake data
 * hook up to db (with 'pg')
 * create route list (from mock-up)
 * create html/css
