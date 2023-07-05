@@ -179,6 +179,17 @@ app.get('/create', (req, res) => {
   res.render("create", templateVars);
 });
 
+app.get('/explore', (req, res) => {
+  let rs = resources;
+  for (const key in rs) {
+    rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
+  }
+  const templateVars = {users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments};
+  res.render("explore", templateVars);
+});
+
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
