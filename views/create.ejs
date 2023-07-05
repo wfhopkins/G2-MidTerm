@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Resource Wall - Create</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <div class="main_container">
+    <article>
+      <h3>Create new Resource</h3>
+      <form class="new_resource" method="POST" action="/home">
+        <label for="url-input">URL</label>
+        <br/>
+        <input id="url-input" type="url" name="url" placeholder="New URL">
+        <br/>
+        <label for="title-input">Title</label>
+        <br/>
+        <input id="title-input" type="title" name="title" placeholder="Title">
+        <br/>
+        <label for="description-input">Description</label>
+        <br/>
+        <input id="description-input" type="description" name="description" placeholder="Description">
+        <br/>
+        <label for="type-input">Type</label>
+        <br/>
+        <input id="type-input" type="type" name="type" placeholder="Type (video, blog, image...)">
+      </form>
+    </article>
+  </div>
+</body>
+
+</html>

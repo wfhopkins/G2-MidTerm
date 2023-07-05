@@ -4,7 +4,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
   background: rgb(90, 107, 111);
 }
 
@@ -20,50 +19,68 @@ nav {
 }
 
 //NAV BAR: First row of header section. locked position (tbd
-.menu {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: space-around;
-}
-
 #logo {
   border: 1em;
   border-style: solid;
   }
 
-.menu{
+.menu {
   display: flex;
+  flex-direction: row;
   padding: 1.5em;
   align-items: center;
+  width: 100vw;
   justify-content: space-around;
-}
-
-.account_avatar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .button_primary {
   padding: 10px;
+  border-radius: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 2em;
 }
+
+//ACCOUNT AND AVATAR: Pic and Account link in top right. click account and open a window with account settings (tbd)
+.account_avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border-style: solid;
+  margin-bottom: -15px;
+}
+
+.button_secondary {
+  padding: 10px;
+  border-radius: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+
 
 //SEARCH AND SORT: Second row of header section. vanished under header when scroll down (tbd)
 .selectors {
   display: flex;
   width: 90%;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 10px;;
 }
 
 .search_bar {
   padding: 5px;
   width: 80%;
+  background-color: lightgray;
+  border-radius: 20px;
 }
 
-#topics {
-width: 15%;
+.topics {
+  width: 10%;
 }
 
 
@@ -74,7 +91,7 @@ width: 15%;
   flex-wrap: wrap;
   width: 90vw;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 
 }
 
@@ -82,6 +99,7 @@ width: 15%;
   margin-top: 20px;
   padding: 5px;
   border: 1px;
+  border-radius: 10px;
   border-style: solid;
   border-color: red;
   width: 30%;

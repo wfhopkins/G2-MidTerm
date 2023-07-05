@@ -1,0 +1,26 @@
+<header>
+    <div class="menu">
+      <span id="logo">RESOURCE WALL</span>
+      <form method="GET" action="/">
+        <button type="submit" id="menu_home" class="button_primary">HOME</button>
+      </form>
+      <form method="GET" action="/create">
+        <button type="submit" id="menu_create" class="button_primary">CREATE</button>
+      </form>
+      <form method="GET" action="/explore">
+        <button type="submit" id="explore" class="button_primary">EXPLORE</button>
+      </form>
+      <div class="account_avatar">
+        <img src="/images/profile-hex.png" class="avatar">
+        <form method="GET" action="/account">
+          <button type="submit" id="account" class="button_secondary">ACCOUNT</button>
+        </form>
+      </div>
+    </div>
+    <div class="selectors">
+      <input class="search_bar" type="text" placeholder="Search">
+      <form class="topics" method="GET" action="/topics">
+        <button class="button_secondary">TOPICS</button>
+      </form>
+    </div>
+</header>

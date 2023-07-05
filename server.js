@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Web server config
-const sassMiddleware = require('./lib/sass-middleware');
+// const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -16,14 +16,14 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  '/styles',
-  sassMiddleware({
-    source: __dirname + '/styles',
-    destination: __dirname + '/public/styles',
-    isSass: false, // false => scss, true => sass
-  })
-);
+// app.use(
+//   '/styles',
+//   sassMiddleware({
+//     source: __dirname + '/styles',
+//     destination: __dirname + '/public/styles',
+//     isSass: false, // false => scss, true => sass
+//   })
+// );
 app.use(express.static('public'));
 
 // Separated Routes for each Resource
@@ -62,7 +62,7 @@ let users = {
     password: "purple-dinosaur",
     first_name: "William",
     last_name: "Hopkins"
-  }, 
+  },
   "3": {
     id: "3",
     username: "user3",
@@ -77,10 +77,50 @@ let resources = {
   "1": {
     id: "1",
     users_id: "1",
-    url: "https://www.pexels.com/photo/short-coated-tan-dog-2253275/",
-    title: "My Dog",
-    description: "My 5 year old dog Max",
-    type: "Blog",
+    url: "https://en.wikipedia.org/wiki/Bulldog",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "2": {
+    id: "2",
+    users_id: "2",
+    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "3": {
+    id: "3",
+    users_id: "3",
+    url: "https://en.wikipedia.org/wiki/Giraffe",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "4": {
+    id: "4",
+    users_id: "2",
+    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "5": {
+    id: "5",
+    users_id: "3",
+    url: "https://en.wikipedia.org/wiki/Giraffe",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
     rating: 7,
     like: true
   }
@@ -107,15 +147,23 @@ let comments = {
     id: "1",
     users_id: "1",
     resources_id: "1",
-    comment: "I Love My Dog"
+    comment: "I Love bulldogs"
   }
 };
 
 
 app.get('/', (req, res) => {
   const templateVars = {users: users, resources: resources, resources_topics: resources_topics, topics: topics, comments: comments};
-  res.render("index", templateVars);
+  res.render("home", templateVars);
 });
+
+app.get('/create', (req, res) => {
+  const templateVars = {
+
+  }
+  res.render("create", templateVars);
+});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
