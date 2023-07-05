@@ -36,10 +36,10 @@
 
 <body>
   <%- include('partials/_header') %>
-  
+
     <main id="create_container">
       <h3>Create new Resource</h3>
-      <form class="new_resource" method="POST" action="/">
+      <form class="new_resource" method="POST" action="/home">
         <label for="url-input">URL</label>
         <input id="url-input" type="url" name="url" placeholder="New URL">
         <br/>
@@ -55,7 +55,7 @@
         <button type="submit" id="create_submit" class="button_secondary">Submit</button>
       </form>
     </main>
-  
+
 </body>
 
 </html>

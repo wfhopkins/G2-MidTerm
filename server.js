@@ -179,6 +179,16 @@ app.get('/create', (req, res) => {
   res.render("create", templateVars);
 });
 
+app.post('/home', (req, res) => {
+  const url = req.url;
+  const title = req.title;
+  const description = req.description;
+  const type = req.type;
+  res.render("home");
+})
+
+
+
 app.get('/explore', (req, res) => {
   let rs = resources;
   for (const key in rs) {
