@@ -1,0 +1,73 @@
+header {
+  background-color: #5a6b6f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100vw;
+  border: 0.5em;
+  border-style: solid;
+  position: fixed;
+  z-index: 2;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  padding: 5% auto;
+  align-items: center;
+  width: 100vw;
+  justify-content: space-evenly;
+}
+
+#logo {
+  border: 1em;
+  border-style: solid;
+}
+
+.button_primary {
+  padding: 10px;
+  border-radius: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.account_avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border-style: solid;
+  margin-bottom: -15px;
+}
+
+.button_secondary {
+  padding: 10px;
+  border-radius: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.selectors {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.search_bar {
+  padding: 5px;
+  width: 80%;
+  background-color: lightgray;
+  border-radius: 20px;
+}
+
+.topics {
+  width: 10%;
+}
