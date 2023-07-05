@@ -26,7 +26,8 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/header.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/home.css" />
+  <link rel="stylesheet" href="/styles/create.css" />
   <link rel="stylesheet" href="/styles/resource.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -37,7 +38,7 @@
 
 <body>
   <%- include('partials/_header') %>
-  <main class="main_container">
+  <main id="main_container">
     <% for (let id in resources) { %>
       <article class="resource">
         <section id="resource-superscript">
