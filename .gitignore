@@ -3,3 +3,6 @@ public/styles
 .env
 *.log
 *.sqlite3
+branches/
+.gitignore
+package-lock.json
