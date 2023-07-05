@@ -159,7 +159,7 @@ app.get('/', (req, res) => {
 
 app.get('/create', (req, res) => {
   const templateVars = {
-
+    
   }
   res.render("create", templateVars);
 });
