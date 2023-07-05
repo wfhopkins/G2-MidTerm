@@ -1,0 +1,1 @@
+--- bridge table, generate with join on the fly? ---
