@@ -46,13 +46,28 @@
       </div>
     </nav>
   </header>
+
   <div class="main_container">
-    <% for (let id in resources) { %>
-      <article class="resource"><iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" scrolling="no" style="overflow: hidden" z-index="10"
-          src=<%= resources[id]["url"] %> sandbox>
-        </iframe>
-      </article>
-    <% } %>
+    <article>
+      <h3>Create new Resource</h3>
+      <form class="new_resource" method="POST" action="/home">
+        <label for="url-input">URL</label>
+        <br/>
+        <input id="url-input" type="url" name="url" placeholder="New URL">
+        <br/>
+        <label for="title-input">Title</label>
+        <br/>
+        <input id="title-input" type="title" name="title" placeholder="Title">
+        <br/>
+        <label for="description-input">Description</label>
+        <br/>
+        <input id="description-input" type="description" name="description" placeholder="Description">
+        <br/>
+        <label for="type-input">Type</label>
+        <br/>
+        <input id="type-input" type="type" name="type" placeholder="Type (video, blog, image...)">
+      </form>
+    </article>
   </div>
 </body>
 
