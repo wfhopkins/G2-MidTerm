@@ -1,0 +1,11 @@
+#create_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  top: 200px;
+  position: relative;
+  z-index: 1;
+}

@@ -4,7 +4,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: rgb(90, 107, 111);
+  background: #5a6b6f;
 }
 
 nav {
@@ -18,11 +18,10 @@ nav {
   border-style: solid;
 }
 
-//NAV BAR: First row of header section. locked position (tbd
 #logo {
   border: 1em;
   border-style: solid;
-  }
+}
 
 .menu {
   display: flex;
@@ -41,7 +40,6 @@ nav {
   font-size: 2em;
 }
 
-//ACCOUNT AND AVATAR: Pic and Account link in top right. click account and open a window with account settings (tbd)
 .account_avatar {
   display: flex;
   flex-direction: column;
@@ -62,14 +60,11 @@ nav {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-
-
-//SEARCH AND SORT: Second row of header section. vanished under header when scroll down (tbd)
 .selectors {
   display: flex;
   width: 90%;
   justify-content: space-between;
-  margin-bottom: 10px;;
+  margin-bottom: 10px;
 }
 
 .search_bar {
@@ -83,16 +78,12 @@ nav {
   width: 10%;
 }
 
-
-
-//RESOURSE FEED: Where all resources appear in 3 columns.
 .main_container {
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
   flex-direction: row;
   justify-content: space-around;
-
 }
 
 .resource {

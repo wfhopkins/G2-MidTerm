@@ -2,12 +2,13 @@
 require('dotenv').config();
 
 // Web server config
-// const sassMiddleware = require('./lib/sass-middleware');
+const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+const timeago = require('timeago.js');
 
 app.set('view engine', 'ejs');
 
@@ -16,14 +17,14 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-// app.use(
-//   '/styles',
-//   sassMiddleware({
-//     source: __dirname + '/styles',
-//     destination: __dirname + '/public/styles',
-//     isSass: false, // false => scss, true => sass
-//   })
-// );
+app.use(
+  '/styles',
+  sassMiddleware({
+    source: __dirname + '/styles',
+    destination: __dirname + '/public/styles',
+    isSass: false, // false => scss, true => sass
+  })
+);
 app.use(express.static('public'));
 
 // Separated Routes for each Resource
@@ -79,30 +80,36 @@ let resources = {
     users_id: "1",
     url: "https://en.wikipedia.org/wiki/Bulldog",
     title: "Bulldogs",
-    description: "Everything about bulldogs",
+    description: "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb (18–25 kg)",
     type: "Encyclopedia",
     rating: 7,
-    like: true
+    like: true,
+    likes: 22,
+    created_at: "1687836872069"
   },
   "2": {
     id: "2",
     users_id: "2",
     url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-    title: "Bulldogs",
-    description: "Everything about bulldogs",
+    title: "Space",
+    description: "Best space photos from last year",
     type: "Encyclopedia",
     rating: 7,
-    like: true
+    like: true,
+    likes: 18,
+    created_at: "1687836872069"
   },
   "3": {
     id: "3",
     users_id: "3",
     url: "https://en.wikipedia.org/wiki/Giraffe",
-    title: "Bulldogs",
-    description: "Everything about bulldogs",
+    title: "Giraffes",
+    description: "Everything about giraffes",
     type: "Encyclopedia",
     rating: 7,
-    like: true
+    like: true,
+    likes: 16,
+    created_at: "1687836872069"
   },
   "4": {
     id: "4",
@@ -112,17 +119,21 @@ let resources = {
     description: "Everything about bulldogs",
     type: "Encyclopedia",
     rating: 7,
-    like: true
+    like: true,
+    likes: 12,
+    created_at: "1687836872069"
   },
   "5": {
     id: "5",
     users_id: "3",
     url: "https://en.wikipedia.org/wiki/Giraffe",
-    title: "Bulldogs",
-    description: "Everything about bulldogs",
+    title: "Giraffes",
+    description: "Everything about giraffes",
     type: "Encyclopedia",
     rating: 7,
-    like: true
+    like: true,
+    likes: 10,
+    created_at: "1687836872069"
   }
 };
 
@@ -153,17 +164,20 @@ let comments = {
 
 
 app.get('/', (req, res) => {
-  const templateVars = {users: users, resources: resources, resources_topics: resources_topics, topics: topics, comments: comments};
+  let rs = resources;
+  for (const key in rs) {
+    rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
+  }
+  const templateVars = {users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments};
   res.render("home", templateVars);
 });
 
 app.get('/create', (req, res) => {
   const templateVars = {
-    
+
   }
   res.render("create", templateVars);
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
