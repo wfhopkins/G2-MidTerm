@@ -4,9 +4,9 @@
 <head>
   <title>Home Page</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -47,12 +47,13 @@
     </nav>
   </header>
   <div class="main_container">
-    <article class="resource">IMAGE</article>
-    <article class="resource">VIDEO</article>
-    <article class="resource">TUTORIAL</article>
-    <article class="resource">IMAGE</article>
-    <article class="resource">VIDEO</article>
-    <article class="resource">TUTORIAL</article>
+    <% for (let id in resources) { %>
+      <article class="resource"><iframe id="inlineFrameExample" title="Inline Frame Example" width="100%" height="100%" scrolling="no" style="overflow: hidden" z-index="10"
+          src=<%= resources[id]["url"] %> sandbox>
+        </iframe>
+      </article>
+
+    <% } %>
   </div>
 </body>
 

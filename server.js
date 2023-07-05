@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Web server config
-// const sassMiddleware = require('./lib/sass-middleware');
+const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -77,10 +77,50 @@ let resources = {
   "1": {
     id: "1",
     users_id: "1",
-    url: "https://www.pexels.com/photo/short-coated-tan-dog-2253275/",
-    title: "My Dog",
-    description: "My 5 year old dog Max",
-    type: "Blog",
+    url: "https://en.wikipedia.org/wiki/Bulldog",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "2": {
+    id: "2",
+    users_id: "2",
+    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "3": {
+    id: "3",
+    users_id: "3",
+    url: "https://en.wikipedia.org/wiki/Giraffe",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "4": {
+    id: "4",
+    users_id: "2",
+    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true
+  },
+  "5": {
+    id: "5",
+    users_id: "3",
+    url: "https://en.wikipedia.org/wiki/Giraffe",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
     rating: 7,
     like: true
   }
@@ -107,7 +147,7 @@ let comments = {
     id: "1",
     users_id: "1",
     resources_id: "1",
-    comment: "I Love My Dog"
+    comment: "I Love bulldogs"
   }
 };
 
