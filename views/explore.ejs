@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Resource Wall - Home Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    crossorigin="anonymous">
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/home.css" />
+  <link rel="stylesheet" href="/styles/create.css" />
+  <link rel="stylesheet" href="/styles/resource.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/header.js"></script>
+  <script defer src="/scripts/main.js"></script>
+  <script defer src="/scripts/resource.js"></script>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <main id="main_container">
+    <% for (let id in resources) { %>
+      <article class="resource">
+        <section id="resource-superscript">
+          <h3><%= resources[id]["title"] %></h3>
+          <p><%= resources[id]["description"] %></p>
+        </section>
+        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resources[id]["url"] %> sandbox>
+        </iframe>
+        <p><%= resources[id]["time_ago"] %> by @<%= users["1"]["username"] %></p>
+        <section id="resource-subscript">
+          <p><%= resources[id]["likes"] %> likes, <%= resources[id]["likes"] - 8%> comments</p>
+          <div id="icons">
+            <a href="/like" class="icon"><i class="fas fa-heart"></i></a>
+            <a href="/comment" class="icon"><i class="fa-solid fa-comment"></i></a>
+            <a href="/make_comment" class="icon"><i class="fa-solid fa-pen"></i></a>
+            <a href="<%= resources[id]["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
+            <!-- <a href="/" class="icon"><i name="flag" class="fas fa-paper-plane"></i></a> -->
+            <a href="/flag" class="icon"><i name="flag" class="fas fa-flag"></i></a>
+            <!-- <button class="btn btn-info btn-circle btn-circle-lg m-1"><i class="fa fa-paper-plane"></i></button> -->
+            <!-- <a href="#" class="icon"><i class="fas fa-retweet"></i></a> -->
+          </div>
+        </section>
+      </article>
+      
+
+    <% } %>
+    </main>
+</body>
+
+</html>
