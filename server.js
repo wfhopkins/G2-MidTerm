@@ -157,6 +157,14 @@ app.get('/', (req, res) => {
   res.render("home", templateVars);
 });
 
+app.get('/create', (req, res) => {
+  const templateVars = {
+
+  }
+  res.render("create", templateVars);
+});
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
