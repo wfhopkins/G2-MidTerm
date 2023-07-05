@@ -1,0 +1,10 @@
+#main_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  flex-direction: row;
+  justify-content: flex-start;
+  top: 200px;
+  position: relative;
+  z-index: 1;
+}
