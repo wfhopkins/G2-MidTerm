@@ -18,15 +18,18 @@
       </div>
     </div>
     <div class="selectors">
-      <input class="search_bar" type="text" placeholder="Search">
-      <form class="topics" method="GET" action="/topics">
-        <select name="topics" id="topics" placeholder="Topics">
-          <option value="select-topic">Topics</option>
-          <option value="animals">Animals</option>
-          <option value="saab">Saab</option>
-          <option value="mercedes">Mercedes</option>
-          <option value="audi">Audi</option>
+      <form class="search">
+        <input class="search_bar" type="text" placeholder="Search">
+      </form>
+      <form class="topics" method="POST" action="/topics">
+        <select name="topics" id="topics">
+          <option value="" disabled selected>Topics</option>
+          <% for (const topic of topics) { %>
+            <option value="<%= topic.id %>"><%= topic.name %></option>
+          <% } %>
+
         </select>
+        <button type="submit">Go!</button>
       </form>
     </div>
 </header>

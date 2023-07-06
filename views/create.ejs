@@ -53,10 +53,17 @@
         <input id="description-input" type="description" name="description" placeholder="Description">
         <br/>
         <!-- <label for="type-input">Type</label> -->
-        <input id="category-input" type="category" name="category" placeholder="Media Category">
-        <br/>
+        <!-- <input id="category-input" type="category" name="category" placeholder="Media Category">
+        <br/> -->
         <!-- <label for="topic-input">Topic</label> -->
-        <input id="topic-input" type="topic" name="topic" placeholder="Select a Topic">
+        <!-- <input id="topic-input" type="topic" name="topic" placeholder="Select a Topic"> -->
+        <select name="topics" id="topics">
+          <option value="" disabled selected>Topics</option>
+          <% for (const topic of topics) { %>
+            <option value="<%= topic.id %>"><%= topic.name %></option>
+          <% } %>
+
+        </select>
         <br/>
         <button type="submit" id="create_submit" class="button_secondary">Submit</button>
       </form>

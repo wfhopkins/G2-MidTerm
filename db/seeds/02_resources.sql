@@ -1,4 +1,4 @@
-INSERT INTO resources (users_id, url, title, description,                                   type, rating, liked) VALUES
+INSERT INTO resources (users_id, url, title, description, category, rating, liked) VALUES
 (1, 'http://www.khanacademy.org', 'Khan Academy', 'Free online educational resource',              0,    5,      TRUE),
 (2, 'http://www.coursera.org', 'Coursera', 'Online courses from top universities',                 0,    5,      TRUE),
 (3, 'http://www.edx.org', 'edX', 'Online learning platform',                                       0,    5,      TRUE),

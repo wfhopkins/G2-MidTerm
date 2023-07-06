@@ -55,7 +55,7 @@
           <%= timeago.format(new Date(resource["created_at"])) %> by @<%= resource["username"] %>
         </p>
         <section id="resource-subscript">
-          <!-- <p><%= resource["likes"] %> likes, <%= resource["likes"] - 8%> comments</p> -->
+          <p><%= likes %> likes, <%= comments.length %> comments</p>
           <div id="icons">
             <button>
               <i class="fas fa-heart"></i>
@@ -77,6 +77,12 @@
         <form method="POST" action="/resources/<%= resource["id"] %>/delete">
           <button type="submit" class='btn btn-danger'>Delete</button>
         </form>
+      </article>
+      <article class="comments-feed">
+        <%= comments.length %>
+          <%for (const comment of comments) {%>
+            <p><%= comment.comment%></p>
+          <% }%>
       </article>
 
 
