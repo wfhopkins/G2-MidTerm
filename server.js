@@ -185,6 +185,15 @@ app.get('/explore', (req, res) => {
   res.render("explore", templateVars);
 });
 
+app.get('/resources/:id', (req, res) => {
+  let id = req.params.id;
+  let resource = resources[id];
+  console.log(resource);
+  resource["time_ago"] = timeago.format(resource["created_at"]);
+  const templateVars = {users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments};
+  res.render("resource", templateVars);
+});
+
 
 
 app.listen(PORT, () => {
