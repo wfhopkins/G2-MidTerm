@@ -39,42 +39,26 @@
 <body>
   <%- include('partials/_header') %>
   <main id="main_container">
-    <% for (let id of resources) { %>
+    <% for (let index = (resources.length-1); index >= 0; index--) { %>
       <article class="resource">
         <section id="resource-superscript">
-          <h3><%= id["title"] %></h3>
-          <p><%= id["description"] %></p>
+          <h3><%= resources[index]["title"] %></h3>
+          <p><%= resources[index]["description"] %></p>
         </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= id["url"] %> sandbox>
+        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resources[index]["url"] %> sandbox>
         </iframe>
-        <p><%= id["time_ago"] %> by @<%= id["username"] %></p>
+        <p><%= timeago.format(new Date(resources[index]["created_at"])) %> by @<%= resources[index]["username"] %></p>
         <section id="resource-subscript">
-          <!-- <p><%= id["liked"] %> likes, <%= id["liked"] - 8%> comments</p> -->
-          <div id="icons">
-            <!-- <button>
-              <i class="fas fa-heart"></i>
-            </button> -->
-            <!-- <a href="/like" class="icon"><i class="fas fa-heart"></i></a> -->
-            <!-- <button>
-              <a href="/resources[id]["id"]/comments" class="icon"><i class="fa-solid fa-comment"></i></a>              
-            </button> -->
-            <!-- <a href="/comment" class="icon"><i class="fa-solid fa-comment"></i></a> -->
-            <!-- <a href="/make_comment" class="icon"><i class="fa-solid fa-pen"></i></a> -->
+          <div id="icons">          
             <button>
-              <a href="<%= resources[id]["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
+              <a href="<%= resources[index]["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
             </button>
             <button>
-              <a href="resources/<%= resources[id]["id"]%>" class="icon"><i class="fa fa-paper-plane"></i></a>
+              <a href="resources/<%= resources[index]["id"]%>" class="icon"><i class="fa fa-paper-plane"></i></a>
             </button>
-            <!-- <a href="/" class="icon"><i name="flag" class="fas fa-paper-plane"></i></a> -->
-            <!-- <a href="/flag" class="icon"><i name="flag" class="fas fa-flag"></i></a> -->
-            <!-- <button class="btn btn-info btn-circle btn-circle-lg m-1"><i class="fa fa-paper-plane"></i></button> -->
-            <!-- <a href="#" class="icon"><i class="fas fa-retweet"></i></a> -->
           </div>
         </section>
       </article>
-
-
     <% } %>
     </main>
 </body>

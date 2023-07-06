@@ -15,8 +15,8 @@ app.set('view engine', 'ejs');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'vagrant',
-  password: '123',
+  user: 'labber',
+  password: 'labber',
   host: 'localhost',
   database: 'midterm'
 });
@@ -56,133 +56,145 @@ app.use('/users', usersRoutes);
 
 
 // // Our database of users
-// let users = {
-//   "1": {
-//     id: "1",
-//     username: "user1",
-//     email: "user1@example.com",
-//     password: "purple-rabbit-dinosaur",
-//     first_name: "David",
-//     last_name: "Fatokun"
-//   },
-//   "2": {
-//     id: "2",
-//     username: "user2",
-//     email: "user2@example.com",
-//     password: "purple-dinosaur",
-//     first_name: "William",
-//     last_name: "Hopkins"
-//   },
-//   "3": {
-//     id: "3",
-//     username: "user3",
-//     email: "user3@example.com",
-//     password: "rabbit-dinosaur",
-//     first_name: "Jordan",
-//     last_name: "Dennis"
-// }
-// };
+let users = {
+  "1": {
+    id: "1",
+    username: "user1",
+    email: "user1@example.com",
+    password: "purple-rabbit-dinosaur",
+    first_name: "David",
+    last_name: "Fatokun"
+  },
+  "2": {
+    id: "2",
+    username: "user2",
+    email: "user2@example.com",
+    password: "purple-dinosaur",
+    first_name: "William",
+    last_name: "Hopkins"
+  },
+  "3": {
+    id: "3",
+    username: "user3",
+    email: "user3@example.com",
+    password: "rabbit-dinosaur",
+    first_name: "Jordan",
+    last_name: "Dennis"
+  }
+};
 
-// let resources = {
-//   "1": {
-//     id: "1",
-//     users_id: "1",
-//     url: "https://en.wikipedia.org/wiki/Bulldog",
-//     title: "Bulldogs",
-//     description: "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb (18–25 kg)",
-//     type: "Encyclopedia",
-//     rating: 7,
-//     like: true,
-//     likes: 22,
-//     created_at: "1687836872069"
-//   },
-//   "2": {
-//     id: "2",
-//     users_id: "2",
-//     url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-//     title: "Space",
-//     description: "Best space photos from last year",
-//     type: "Encyclopedia",
-//     rating: 7,
-//     like: true,
-//     likes: 18,
-//     created_at: "1687836872069"
-//   },
-//   "3": {
-//     id: "3",
-//     users_id: "3",
-//     url: "https://en.wikipedia.org/wiki/Giraffe",
-//     title: "Giraffes",
-//     description: "Everything about giraffes",
-//     type: "Encyclopedia",
-//     rating: 7,
-//     like: true,
-//     likes: 16,
-//     created_at: "1687836872069"
-//   },
-//   "4": {
-//     id: "4",
-//     users_id: "2",
-//     url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-//     title: "Bulldogs",
-//     description: "Everything about bulldogs",
-//     type: "Encyclopedia",
-//     rating: 7,
-//     like: true,
-//     likes: 12,
-//     created_at: "1687836872069"
-//   },
-//   "5": {
-//     id: "5",
-//     users_id: "3",
-//     url: "https://en.wikipedia.org/wiki/Giraffe",
-//     title: "Giraffes",
-//     description: "Everything about giraffes",
-//     type: "Encyclopedia",
-//     rating: 7,
-//     like: true,
-//     likes: 10,
-//     created_at: "1687836872069"
-//   }
-// };
+let resources = {
+  "1": {
+    id: "1",
+    users_id: "1",
+    url: "https://en.wikipedia.org/wiki/Bulldog",
+    title: "Bulldogs",
+    description: "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb (18–25 kg)",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true,
+    likes: 22,
+    created_at: "1687836872069"
+  },
+  "2": {
+    id: "2",
+    users_id: "2",
+    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+    title: "Space",
+    description: "Best space photos from last year",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true,
+    likes: 18,
+    created_at: "1687836872069"
+  },
+  "3": {
+    id: "3",
+    users_id: "3",
+    url: "https://en.wikipedia.org/wiki/Giraffe",
+    title: "Giraffes",
+    description: "Everything about giraffes",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true,
+    likes: 16,
+    created_at: "1687836872069"
+  },
+  "4": {
+    id: "4",
+    users_id: "2",
+    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+    title: "Bulldogs",
+    description: "Everything about bulldogs",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true,
+    likes: 12,
+    created_at: "1687836872069"
+  },
+  "5": {
+    id: "5",
+    users_id: "3",
+    url: "https://en.wikipedia.org/wiki/Giraffe",
+    title: "Giraffes",
+    description: "Everything about giraffes",
+    type: "Encyclopedia",
+    rating: 7,
+    like: true,
+    likes: 10,
+    created_at: "1687836872069"
+  }
+};
 
-// let resources_topics = {
-//   "1": {
-//     id: "1",
-//     resources_id: "1",
-//     topics_id: "1"
-//   }
-// };
+let resources_topics = {
+  "1": {
+    id: "1",
+    resources_id: "1",
+    topics_id: "1"
+  }
+};
 
-// let topics = {
-//   "1": {
-//     id: "1",
-//     name: "Dogs",
-//     resources_id: "1"
-//   }
-// };
+let topics = {
+  "1": {
+    id: "1",
+    name: "Dogs",
+    resources_id: "1"
+  }
+};
 
-// let comments = {
-//   "1": {
-//     id: "1",
-//     users_id: "1",
-//     resources_id: "1",
-//     comment: "I Love bulldogs"
-//   }
-// };
+let comments = {
+  "1": {
+    id: "1",
+    users_id: "1",
+    resources_id: "1",
+    comment: "I Love bulldogs"
+  }
+};
 
 
 app.get('/', (req, res) => {
 
-  pool.query("SELECT * FROM resources")
-  .then((result)=>{
-    console.log("Select query ", result);
-    const resources = result.rows;
-    let templateVars = {resources: resources};
-    console.log("#######################################################resources:");
-    console.log(resources);
-    res.render("home", templateVars);
-  })
+  pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
+    .then((result) => {
+      console.log("Select query ", result);
+      const resources = result.rows;
+      // for (const key in rs) {
+      //   resources[key]["time_ago"] = timeago.format(new Date(rs[key]["created_at"]));
+      // }
+      let templateVars = { resources: resources };
+      console.log("#######################################################resources:");
+      pool.query("SELECT * FROM users ")
+        .then((result) => {
+          console.log("Select query ", result);
+          const users = result.rows;
+          let templateVars = { resources: resources, users: users, timeago: timeago};
+          console.log("from sql:",resources[0].created_at);
+          console.log("from timeago:",resources[0].created_at);
+          
+          console.log("#######################################################users:");
+          res.render("home", templateVars);
+        })
+    })
   // let rs = resources;
   // for (const key in rs) {
   //   rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
@@ -195,21 +207,21 @@ app.get('/create', (req, res) => {
   res.render("create");
 });
 
-app.post('/', (req, res) => {
+app.post('/create', (req, res) => {
   const url = req.body.url;
   const title = req.body.title;
   const description = req.body.description;
   const type = 1; //req.body.category;
-  console.log("test", url);
+  // console.log("test", url);
   //1. After getting all the values from the Form, we are going to insert it into the Database table
   //Insert Query for the table
   pool.query(`
     INSERT INTO resources (users_id, url, title, description, type)
     VALUES ($1, $2, $3, $4, $5)`, [1, url, title, description, type])
-  .then((result)=>{
-    console.log("Insert Statement worked ", result);
-    res.redirect("/");
-  })
+    .then((result) => {
+      console.log("Insert Statement worked ", result);
+      res.redirect("/");
+    })
 });
 
 
@@ -219,20 +231,18 @@ app.get('/explore', (req, res) => {
   for (const key in rs) {
     rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
   }
-  const templateVars = {users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments};
+  const templateVars = { users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments };
   res.render("explore", templateVars);
 });
 
 app.get('/resources/:id', (req, res) => {
   let id = req.params.id;
   let resource = resources[id];
-  console.log(resource);
+  // console.log(resource);
   resource["time_ago"] = timeago.format(resource["created_at"]);
-  const templateVars = {users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments};
+  const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
   res.render("resource", templateVars);
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
