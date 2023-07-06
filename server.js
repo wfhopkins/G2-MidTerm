@@ -14,12 +14,14 @@ app.set('view engine', 'ejs');
 
 const { Pool } = require('pg');
 
-const pool = new Pool({
-  user: 'labber',
-  password: 'labber',
-  host: 'localhost',
-  database: 'midterm'
-});
+const dbConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
+}
+const pool = new Pool(dbConfig);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -190,7 +192,7 @@ app.get('/', (req, res) => {
           let templateVars = { resources: resources, users: users, timeago: timeago};
           console.log("from sql:",resources[0].created_at);
           console.log("from timeago:",resources[0].created_at);
-          
+
           console.log("#######################################################users:");
           res.render("home", templateVars);
         })
@@ -216,15 +218,15 @@ app.post('/create', (req, res) => {
   //1. After getting all the values from the Form, we are going to insert it into the Database table
   //Insert Query for the table
   pool.query(`
-    INSERT INTO resources (users_id, url, title, description, type)
-    VALUES ($1, $2, $3, $4, $5)`, [1, url, title, description, type])
+    INSERT INTO resources (users_id, url, title, description, category, topic)
+    VALUES ($1, $2, $3, $4, $5)`, [1, url, title, description, category])
     .then((result) => {
       console.log("Insert Statement worked ", result);
       res.redirect("/");
     })
 });
 
-
+const defaultTopics = []
 
 app.get('/explore', (req, res) => {
   let rs = resources;
