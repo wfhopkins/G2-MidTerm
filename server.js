@@ -7,6 +7,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { Pool } = require('pg');
 const app = express();
+const PORT = process.env.PORT || 8080;
 const timeago = require('timeago.js');
 app.set('view engine', 'ejs');
 
@@ -15,7 +16,7 @@ const dbConfig = {
   password: process.env.DB_PASS,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT,
 }
 const pool = new Pool(dbConfig);
 
@@ -171,34 +172,12 @@ let comments = {
 
 
 app.get('/', (req, res) => {
-
   pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
     .then((result) => {
-      console.log("Select query ", result);
       const resources = result.rows;
-      // for (const key in rs) {
-      //   resources[key]["time_ago"] = timeago.format(new Date(rs[key]["created_at"]));
-      // }
-      let templateVars = { resources: resources };
-      console.log("#######################################################resources:");
-      pool.query("SELECT * FROM users ")
-        .then((result) => {
-          console.log("Select query ", result);
-          const users = result.rows;
-          let templateVars = { resources: resources, users: users, timeago: timeago};
-          console.log("from sql:",resources[0].created_at);
-          console.log("from timeago:",resources[0].created_at);
-
-          console.log("#######################################################users:");
-          res.render("home", templateVars);
-        })
+      let templateVars = { resources: resources, timeago: timeago };
+      res.render("home", templateVars);    
     })
-  // let rs = resources;
-  // for (const key in rs) {
-  //   rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
-  // }
-  // const templateVars = {users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments};
-  // res.render("home", templateVars);
 });
 
 app.get('/create', (req, res) => {
@@ -225,21 +204,48 @@ app.post('/create', (req, res) => {
 const defaultTopics = []
 
 app.get('/explore', (req, res) => {
-  let rs = resources;
-  for (const key in rs) {
-    rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
-  }
-  const templateVars = { users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments };
-  res.render("explore", templateVars);
+  pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
+    .then((result) => {
+      const resources = result.rows;
+      let templateVars = { resources: resources, timeago: timeago };
+      res.render("explore", templateVars);    
+    })
 });
 
 app.get('/resources/:id', (req, res) => {
+  pool.query("SELECT * FROM resources JOIN users ON users.id = users_id WHERE resources.id = $1", [req.params.id])
+    .then((result) => {
+      const resource = result.rows[0];
+      let templateVars = { resource: resource, timeago: timeago };
+      res.render("resource", templateVars);
+    })
+});
+
+app.get('/resources/:id/edit', (req, res) => {
   let id = req.params.id;
   let resource = resources[id];
   // console.log(resource);
   resource["time_ago"] = timeago.format(resource["created_at"]);
   const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
   res.render("resource", templateVars);
+});
+
+app.post('/resources/:id/edit', (req, res) => {
+  let id = req.params.id;
+  let resource = resources[id];
+  // console.log(resource);
+  resource["time_ago"] = timeago.format(resource["created_at"]);
+  const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
+  res.render("resource", templateVars);
+});
+
+app.post('/resources/:id/delete', (req, res) => {
+  pool.query("DELETE * FROM resources JOIN users ON users.id = users_id WHERE resources.id = $1", [req.params.id])
+    .then((result) => {
+      const resource = result.rows[0];
+      let templateVars = { resource: resource, timeago: timeago };
+      res.redirect("/");
+    })
 });
 
 app.listen(PORT, () => {
