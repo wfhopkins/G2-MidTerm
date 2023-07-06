@@ -5,14 +5,18 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-
-const PORT = process.env.PORT || 8080;
+const { Pool } = require('pg');
 const app = express();
 const timeago = require('timeago.js');
-
 app.set('view engine', 'ejs');
 
-const { Pool } = require('pg');
+const dbConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
+}
 
 const dbConfig = {
   user: process.env.DB_USER,
