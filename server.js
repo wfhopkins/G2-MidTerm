@@ -189,13 +189,13 @@ app.post('/create', (req, res) => {
   const url = req.body.url;
   const title = req.body.title;
   const description = req.body.description;
-  const type = 1; //req.body.category;
+  const category = req.body.category;
   // console.log("test", url);
   //1. After getting all the values from the Form, we are going to insert it into the Database table
   //Insert Query for the table
   pool.query(`
-    INSERT INTO resources (users_id, url, title, description, type)
-    VALUES ($1, $2, $3, $4, $5)`, [1, url, title, description, type])
+    INSERT INTO resources (users_id, url, title, description, category)
+    VALUES ($1, $2, $3, $4, $5)`, [1, url, title, description, category])
     .then((result) => {
       console.log("Insert Statement worked ", result);
       res.redirect("/");
@@ -241,10 +241,8 @@ app.post('/resources/:id/edit', (req, res) => {
 });
 
 app.post('/resources/:id/delete', (req, res) => {
-  pool.query("DELETE * FROM resources JOIN users ON users.id = users_id WHERE resources.id = $1", [req.params.id])
-    .then((result) => {
-      const resource = result.rows[0];
-      let templateVars = { resource: resource, timeago: timeago };
+  pool.query("DELETE FROM resources WHERE resources.id = $1", [req.params.id])
+    .then(() => {
       res.redirect("/");
     })
 });
