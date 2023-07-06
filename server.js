@@ -121,14 +121,14 @@ app.post('/resources/:id/edit', (req, res) => {
   const rating = req.body.rating;
   const liked = req.body.liked;
   pool.query(`
-    UPDATE resources SET users_id = $1, url = $2, title = $3, description = $4, category = $5, rating = $6, liked = $7`, [1, url, title, description, category, rating, liked])
+    UPDATE resources SET users_id = $1, url = $2, title = $3, description = $4, category = $5, rating = $6, liked = $7 WHERE id = $8`, [1, url, title, description, category, rating, liked, req.params.id])
     .then((result) => {
       res.redirect("/");
     })
 });
 
 app.post('/resources/:id/delete', (req, res) => {
-  pool.query("DELETE FROM resources WHERE resources.id = $1", [req.params.id])
+  pool.query("DELETE FROM resources WHERE id = $1", [req.params.id])
     .then(() => {
       res.redirect("/");
     })
