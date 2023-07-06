@@ -1,0 +1,98 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #5a6b6f;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+  width: 100vw;
+  border: 0.5em;
+  border-style: solid;
+}
+
+#logo {
+  border: 1em;
+  border-style: solid;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5em;
+  align-items: center;
+  width: 100vw;
+  justify-content: space-around;
+}
+
+.button_primary {
+  padding: 10px;
+  border-radius: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.account_avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border-style: solid;
+  margin-bottom: -15px;
+}
+
+.button_secondary {
+  padding: 10px;
+  border-radius: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.selectors {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.search_bar {
+  padding: 5px;
+  width: 80%;
+  background-color: lightgray;
+  border-radius: 20px;
+}
+
+.topics {
+  width: 10%;
+}
+
+.main_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.resource {
+  margin-top: 20px;
+  padding: 5px;
+  border: 1px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: red;
+  width: 30%;
+  height: 450px;
+}
