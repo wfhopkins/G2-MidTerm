@@ -17,14 +17,6 @@ const dbConfig = {
   database: process.env.DB_NAME,
   port: process.env.DB_PORT
 }
-
-const dbConfig = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT
-}
 const pool = new Pool(dbConfig);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
