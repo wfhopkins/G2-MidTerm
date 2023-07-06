@@ -36,25 +36,40 @@
   <script defer src="/scripts/resource.js"></script>
 </head>
 
+
+
+CREATE TABLE  resources (
+  id SERIAL PRIMARY KEY NOT NULL,
+  users_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  url VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  type INTEGER NOT NULL DEFAULT 0,
+  rating SMALLINT,
+  liked BOOLEAN DEFAULT TRUE
+);
+
+
+
 <body>
   <%- include('partials/_header') %>
   <main id="main_container">
-    <% for (let id in resources) { %>
+    <% for (let id of resources) { %>
       <article class="resource">
         <section id="resource-superscript">
-          <h3><%= resources[id]["title"] %></h3>
-          <p><%= resources[id]["description"] %></p>
+          <h3><%= id["title"] %></h3>
+          <p><%= id["description"] %></p>
         </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resources[id]["url"] %> sandbox>
+        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= id["url"] %> sandbox>
         </iframe>
-        <p><%= resources[id]["time_ago"] %> by @<%= users["1"]["username"] %></p>
+        <p><%= id["time_ago"] %> by @<%= id["username"] %></p>
         <section id="resource-subscript">
-          <p><%= resources[id]["likes"] %> likes, <%= resources[id]["likes"] - 8%> comments</p>
+          <!-- <p><%= id["liked"] %> likes, <%= id["liked"] - 8%> comments</p> -->
           <div id="icons">
             <a href="/like" class="icon"><i class="fas fa-heart"></i></a>
             <a href="/comment" class="icon"><i class="fa-solid fa-comment"></i></a>
             <a href="/make_comment" class="icon"><i class="fa-solid fa-pen"></i></a>
-            <a href="<%= resources[id]["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
+            <a href="<%= id["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
             <!-- <a href="/" class="icon"><i name="flag" class="fas fa-paper-plane"></i></a> -->
             <a href="/flag" class="icon"><i name="flag" class="fas fa-flag"></i></a>
             <!-- <button class="btn btn-info btn-circle btn-circle-lg m-1"><i class="fa fa-paper-plane"></i></button> -->
@@ -62,7 +77,7 @@
           </div>
         </section>
       </article>
-      
+
 
     <% } %>
     </main>

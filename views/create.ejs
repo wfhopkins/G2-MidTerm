@@ -31,7 +31,9 @@
   <link rel="stylesheet" href="/styles/resource.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/header.js"></script>
+  <script defer src="/scripts/main.js"></script>
+  <script defer src="/scripts/resource.js"></script>
 </head>
 
 <body>
@@ -39,7 +41,7 @@
 
     <main id="create_container">
       <h3>Create new Resource</h3>
-      <form class="new_resource" method="POST" action="/home">
+      <form class="new_resource" method="POST" action="/">
         <label for="url-input">URL</label>
         <input id="url-input" type="url" name="url" placeholder="New URL">
         <br/>
@@ -50,7 +52,7 @@
         <input id="description-input" type="description" name="description" placeholder="Description">
         <br/>
         <label for="type-input">Type</label>
-        <input id="type-input" type="type" name="type" placeholder="Type (video, blog, image...)">
+        <input id="type-input" type="type" name="category" placeholder="Type (video, blog, image...)">
         <br/>
         <button type="submit" id="create_submit" class="button_secondary">Submit</button>
       </form>

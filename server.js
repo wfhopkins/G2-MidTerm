@@ -12,6 +12,15 @@ const timeago = require('timeago.js');
 
 app.set('view engine', 'ejs');
 
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: 'vagrant',
+  password: '123',
+  host: 'localhost',
+  database: 'midterm'
+});
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -46,146 +55,162 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 
-// Our database of users
-let users = {
-  "1": {
-    id: "1",
-    username: "user1",
-    email: "user1@example.com",
-    password: "purple-rabbit-dinosaur",
-    first_name: "David",
-    last_name: "Fatokun"
-  },
-  "2": {
-    id: "2",
-    username: "user2",
-    email: "user2@example.com",
-    password: "purple-dinosaur",
-    first_name: "William",
-    last_name: "Hopkins"
-  },
-  "3": {
-    id: "3",
-    username: "user3",
-    email: "user3@example.com",
-    password: "rabbit-dinosaur",
-    first_name: "Jordan",
-    last_name: "Dennis"
-}
-};
+// // Our database of users
+// let users = {
+//   "1": {
+//     id: "1",
+//     username: "user1",
+//     email: "user1@example.com",
+//     password: "purple-rabbit-dinosaur",
+//     first_name: "David",
+//     last_name: "Fatokun"
+//   },
+//   "2": {
+//     id: "2",
+//     username: "user2",
+//     email: "user2@example.com",
+//     password: "purple-dinosaur",
+//     first_name: "William",
+//     last_name: "Hopkins"
+//   },
+//   "3": {
+//     id: "3",
+//     username: "user3",
+//     email: "user3@example.com",
+//     password: "rabbit-dinosaur",
+//     first_name: "Jordan",
+//     last_name: "Dennis"
+// }
+// };
 
-let resources = {
-  "1": {
-    id: "1",
-    users_id: "1",
-    url: "https://en.wikipedia.org/wiki/Bulldog",
-    title: "Bulldogs",
-    description: "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb (18–25 kg)",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 22,
-    created_at: "1687836872069"
-  },
-  "2": {
-    id: "2",
-    users_id: "2",
-    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-    title: "Space",
-    description: "Best space photos from last year",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 18,
-    created_at: "1687836872069"
-  },
-  "3": {
-    id: "3",
-    users_id: "3",
-    url: "https://en.wikipedia.org/wiki/Giraffe",
-    title: "Giraffes",
-    description: "Everything about giraffes",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 16,
-    created_at: "1687836872069"
-  },
-  "4": {
-    id: "4",
-    users_id: "2",
-    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-    title: "Bulldogs",
-    description: "Everything about bulldogs",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 12,
-    created_at: "1687836872069"
-  },
-  "5": {
-    id: "5",
-    users_id: "3",
-    url: "https://en.wikipedia.org/wiki/Giraffe",
-    title: "Giraffes",
-    description: "Everything about giraffes",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 10,
-    created_at: "1687836872069"
-  }
-};
+// let resources = {
+//   "1": {
+//     id: "1",
+//     users_id: "1",
+//     url: "https://en.wikipedia.org/wiki/Bulldog",
+//     title: "Bulldogs",
+//     description: "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb (18–25 kg)",
+//     type: "Encyclopedia",
+//     rating: 7,
+//     like: true,
+//     likes: 22,
+//     created_at: "1687836872069"
+//   },
+//   "2": {
+//     id: "2",
+//     users_id: "2",
+//     url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+//     title: "Space",
+//     description: "Best space photos from last year",
+//     type: "Encyclopedia",
+//     rating: 7,
+//     like: true,
+//     likes: 18,
+//     created_at: "1687836872069"
+//   },
+//   "3": {
+//     id: "3",
+//     users_id: "3",
+//     url: "https://en.wikipedia.org/wiki/Giraffe",
+//     title: "Giraffes",
+//     description: "Everything about giraffes",
+//     type: "Encyclopedia",
+//     rating: 7,
+//     like: true,
+//     likes: 16,
+//     created_at: "1687836872069"
+//   },
+//   "4": {
+//     id: "4",
+//     users_id: "2",
+//     url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
+//     title: "Bulldogs",
+//     description: "Everything about bulldogs",
+//     type: "Encyclopedia",
+//     rating: 7,
+//     like: true,
+//     likes: 12,
+//     created_at: "1687836872069"
+//   },
+//   "5": {
+//     id: "5",
+//     users_id: "3",
+//     url: "https://en.wikipedia.org/wiki/Giraffe",
+//     title: "Giraffes",
+//     description: "Everything about giraffes",
+//     type: "Encyclopedia",
+//     rating: 7,
+//     like: true,
+//     likes: 10,
+//     created_at: "1687836872069"
+//   }
+// };
 
-let resources_topics = {
-  "1": {
-    id: "1",
-    resources_id: "1",
-    topics_id: "1"
-  }
-};
+// let resources_topics = {
+//   "1": {
+//     id: "1",
+//     resources_id: "1",
+//     topics_id: "1"
+//   }
+// };
 
-let topics = {
-  "1": {
-    id: "1",
-    name: "Dogs",
-    resources_id: "1"
-  }
-};
+// let topics = {
+//   "1": {
+//     id: "1",
+//     name: "Dogs",
+//     resources_id: "1"
+//   }
+// };
 
-let comments = {
-  "1": {
-    id: "1",
-    users_id: "1",
-    resources_id: "1",
-    comment: "I Love bulldogs"
-  }
-};
+// let comments = {
+//   "1": {
+//     id: "1",
+//     users_id: "1",
+//     resources_id: "1",
+//     comment: "I Love bulldogs"
+//   }
+// };
 
 
 app.get('/', (req, res) => {
-  let rs = resources;
-  for (const key in rs) {
-    rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
-  }
-  const templateVars = {users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments};
-  res.render("home", templateVars);
+
+  pool.query("SELECT * FROM resources")
+  .then((result)=>{
+    console.log("Select query ", result);
+    const resources = result.rows;
+    let templateVars = {resources: resources};
+    console.log("#######################################################resources:");
+    console.log(resources);
+    res.render("home", templateVars);
+  })
+  // let rs = resources;
+  // for (const key in rs) {
+  //   rs[key]["time_ago"] = timeago.format(rs[key]["created_at"]);
+  // }
+  // const templateVars = {users: users, resources: rs, resources_topics: resources_topics, topics: topics, comments: comments};
+  // res.render("home", templateVars);
 });
 
 app.get('/create', (req, res) => {
-  const templateVars = {
-
-  }
-  res.render("create", templateVars);
+  res.render("create");
 });
 
-app.post('/home', (req, res) => {
-  const url = req.url;
-  const title = req.title;
-  const description = req.description;
-  const type = req.type;
-  res.render("home");
-})
+app.post('/', (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const description = req.body.description;
+  const type = 1; //req.body.category;
+  console.log("test", url);
+  //1. After getting all the values from the Form, we are going to insert it into the Database table
+  //Insert Query for the table
+  pool.query(`
+    INSERT INTO resources (users_id, url, title, description, type)
+    VALUES ($1, $2, $3, $4, $5)`, [1, url, title, description, type])
+  .then((result)=>{
+    console.log("Insert Statement worked ", result);
+    res.redirect("/");
+  })
+});
 
 
 
