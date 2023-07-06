@@ -26,10 +26,8 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/header.css" />
-  <link rel="stylesheet" href="/styles/home.css" />
-  <link rel="stylesheet" href="/styles/create.css" />
   <link rel="stylesheet" href="/styles/resource.css" />
-  <link rel="stylesheet" href="/styles/explore.css" />
+  <link rel="stylesheet" href="/styles/resourcepage.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/header.js"></script>
@@ -40,44 +38,32 @@
 <body>
   <%- include('partials/_header') %>
   <main id="main_container">
-    <% for (let id in resources) { %>
       <article class="resource">
         <section id="resource-superscript">
-          <h3><%= resources[id]["title"] %></h3>
-          <p><%= resources[id]["description"] %></p>
+          <h3><%= resource["title"] %></h3>
+          <p><%= resource["description"] %></p>
         </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resources[id]["url"] %> sandbox>
+        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resource["url"] %> sandbox>
         </iframe>
-        <p><%= resources[id]["time_ago"] %> by @<%= users["1"]["username"] %></p>
+        <p><%= resource["time_ago"] %> by @<%= users["1"]["username"] %></p>
         <section id="resource-subscript">
-          <p><%= resources[id]["likes"] %> likes, <%= resources[id]["likes"] - 8%> comments</p>
+          <p><%= resource["likes"] %> likes, <%= resource["likes"] - 8%> comments</p>
           <div id="icons">
-            <!-- <button>
+            <button>
               <i class="fas fa-heart"></i>
-            </button> -->
+            </button>
             <!-- <a href="/like" class="icon"><i class="fas fa-heart"></i></a> -->
-            <!-- <button>
-              <a href="/resources[id]["id"]/comments" class="icon"><i class="fa-solid fa-comment"></i></a>              
-            </button> -->
-            <!-- <a href="/comment" class="icon"><i class="fa-solid fa-comment"></i></a> -->
-            <!-- <a href="/make_comment" class="icon"><i class="fa-solid fa-pen"></i></a> -->
             <button>
-              <a href="<%= resources[id]["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
+              <a href="/resource["id"]/comments" class="icon"><i class="fa-solid fa-comment"></i></a>              
             </button>
             <button>
-              <a href="resources/<%= resources[id]["id"]%>" class="icon"><i class="fa fa-paper-plane"></i></a>
+              <a href="<%= resource["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
             </button>
-            <!-- <a href="<%= resources[id]["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a> -->
-            <!-- <a href="/" class="icon"><i name="flag" class="fas fa-paper-plane"></i></a> -->
-            <!-- <a href="/flag" class="icon"><i name="flag" class="fas fa-flag"></i></a> -->
-            <!-- <button class="btn btn-info btn-circle btn-circle-lg m-1"><i class="fa fa-paper-plane"></i></button> -->
-            <!-- <a href="#" class="icon"><i class="fas fa-retweet"></i></a> -->
           </div>
         </section>
       </article>
       
 
-    <% } %>
     </main>
 </body>
 

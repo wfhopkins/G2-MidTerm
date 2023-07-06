@@ -8,3 +8,14 @@
   position: relative;
   z-index: 1;
 }
+
+main button {
+  border: none;
+  color: orange;
+  background-color: transparent;
+}
+
+main button:hover {
+  color: green;
+  background-color: transparent;
+}

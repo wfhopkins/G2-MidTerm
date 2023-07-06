@@ -8,5 +8,6 @@ CREATE TABLE  resources (
   description VARCHAR(255) NOT NULL,
   type INTEGER NOT NULL DEFAULT 0,
   rating SMALLINT,
+  created_at TIMESTAMP DEFAULT Now(),
   liked BOOLEAN DEFAULT TRUE
 );
