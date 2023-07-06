@@ -1,6 +1,6 @@
-INSERT INTO resources (users_id, url, title, description,                                   type, rating, liked) VALUES
-(1, 'http://khanacademy.org', 'Khan Academy', 'Free online educational resource',              0,    5,      TRUE),
-(2, 'http://coursera.org', 'Coursera', 'Online courses from top universities',                 0,    5,      TRUE),
+INSERT INTO resources (users_id, url, title, description,                                   category, rating, liked) VALUES
+(1, 'https://khanacademy.org', 'Khan Academy', 'Free online educational resource',              0,    5,      TRUE),
+(2, 'https://coursera.org', 'Coursera', 'Online courses from top universities',                 0,    5,      TRUE),
 (3, 'http://edx.org', 'edX', 'Online learning platform',                                       0,    5,      TRUE),
 (4, 'http://udemy.com', 'Udemy', 'Online courses for all levels',                              0,    5,      TRUE),
 (5, 'http://codecademy.com', 'Codecademy', 'Learn to code interactively',                      0,    5,      TRUE),
