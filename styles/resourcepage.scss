@@ -76,8 +76,8 @@ iframe {
 main button {
   // margin: 10px;
   // padding: 10px;
-  border: none;
-  // border-radius: 10px;
+  font-size: 20px;
+  border:none;
   color: orange;
   background-color: transparent;
 }
@@ -85,4 +85,19 @@ main button {
 main button:hover {
   color: green;
   background-color: transparent;
+}
+
+#resource-alter-buttons {
+  font-family: "Source Sans 3", sans-serif;
+  
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  justify-content:space-evenly;
+  align-items: center;
+  margin: 50px 10px;
+}
+
+p {
+  font-size: 20px;
 }
