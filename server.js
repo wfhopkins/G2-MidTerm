@@ -7,6 +7,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { Pool } = require('pg');
 const app = express();
+const PORT = process.env.PORT || 8080;
 const timeago = require('timeago.js');
 app.set('view engine', 'ejs');
 
@@ -175,22 +176,15 @@ app.get('/', (req, res) => {
 
   pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
     .then((result) => {
-      console.log("Select query ", result);
       const resources = result.rows;
       // for (const key in rs) {
       //   resources[key]["time_ago"] = timeago.format(new Date(rs[key]["created_at"]));
       // }
       let templateVars = { resources: resources };
-      console.log("#######################################################resources:");
       pool.query("SELECT * FROM users ")
         .then((result) => {
-          console.log("Select query ", result);
           const users = result.rows;
           let templateVars = { resources: resources, users: users, timeago: timeago};
-          console.log("from sql:",resources[0].created_at);
-          console.log("from timeago:",resources[0].created_at);
-
-          console.log("#######################################################users:");
           res.render("home", templateVars);
         })
     })
@@ -242,6 +236,8 @@ app.get('/resources/:id', (req, res) => {
   const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
   res.render("resource", templateVars);
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
