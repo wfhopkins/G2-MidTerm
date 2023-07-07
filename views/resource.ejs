@@ -49,8 +49,9 @@
             <%= resource["description"] %>
           </p>
         </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%=resource["url"] %> sandbox>
-        </iframe>
+        <img src="<%= resource['thumbnail_path'].replace('/public', '')%>">
+        <!-- <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%=resource["url"] %> sandbox>
+        </iframe> -->
         <p>
           <%= timeago.format(new Date(resource["created_at"])) %> by @<%= resource["username"] %>
         </p>
@@ -79,9 +80,8 @@
         </form>
       </article>
       <article class="comments-feed">
-        <%= comments.length %>
           <%for (const comment of comments) {%>
-            <p><%= comment.comment%></p>
+            <p class="comment-frame"><%= comment.comment%><span> -USERNAME?</span></p>
           <% }%>
       </article>
 

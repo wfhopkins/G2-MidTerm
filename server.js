@@ -70,11 +70,11 @@ app.get('/', (req, res) => {
 
 app.get('/create', (req, res) => {
   pool.query("SELECT * FROM topics ORDER BY name")
-  .then((result) => {
-    const topics = result.rows;
-    let templateVars = {topics: topics}
-    res.render("create", templateVars);
-  })
+    .then((result) => {
+      const topics = result.rows;
+      let templateVars = { topics: topics }
+      res.render("create", templateVars);
+    })
 });
 
 app.post('/create', (req, res) => {
@@ -104,7 +104,8 @@ app.post('/create', (req, res) => {
 
 app.post('/topics', (req, res) => {
   // pool.query(`
-  //   SELECT * FROM topics
+  //  SELECT * FROM topics
+  //  WHERE topics = req.???
   // `)
   console.log(req.body);
 })
@@ -112,11 +113,24 @@ app.post('/topics', (req, res) => {
 
 app.get('/explore', (req, res) => {
   pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
-    .then((result) => {
-      const resources = result.rows;
-      let templateVars = { resources: resources, timeago: timeago };
-      res.render("explore", templateVars);
-    })
+  .then((result) => {
+    const resources = result.rows;
+    pool.query("SELECT * FROM topics ORDER BY name")
+      .then((result) => {
+        const topics = result.rows;
+        let templateVars = { resources: resources, topics: topics, timeago: timeago };
+        res.render("explore", templateVars);
+      })
+  })
+  // pool.query(`SELECT * FROM resources
+  // JOIN users ON users.id = users_id
+  // JOIN resources_topics ON resources_id = resources.id
+  // JOIN topics ON resources_topics.resources_id = topics.id`)
+  //   .then((result) => {
+  //     const resources = result.rows;
+  //     let templateVars = { resources: resources, timeago: timeago };
+  //     res.render("explore", templateVars);
+  //   })
 });
 
 app.get('/resources/:id', (req, res) => {
@@ -128,24 +142,28 @@ app.get('/resources/:id', (req, res) => {
   const promises = [resourcePromise, commentPromise, likesPromise, topicsPromise]
 
   Promise.all(promises)
-  .then((result) => {
-    const resource = result[0].rows[0];
-    const comments = result[1].rows;
-    const likes = result[2].rows[0].total_likes;
-    const topics = result[3].rows;
-    console.log("comments", comments);
+    .then((result) => {
+      const resource = result[0].rows[0];
+      const comments = result[1].rows;
+      const likes = result[2].rows[0].total_likes;
+      const topics = result[3].rows;
+      console.log("comments", comments);
       let templateVars = { resource: resource, comments: comments, likes: likes, topics: topics, timeago: timeago };
       res.render("resource", templateVars);
     })
 });
 
 app.get('/resources/:id/edit', (req, res) => {
-  let id = req.params.id;
-  let resource = resources[id];
-  // console.log(resource);
-  resource["time_ago"] = timeago.format(resource["created_at"]);
-  const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
-  res.render("resource", templateVars);
+  pool.query("SELECT * FROM resources JOIN users ON users.id = users_id WHERE resources.id = $1", [req.params.id])
+    .then((result) => {
+      const resource = result.rows[0];
+      pool.query("SELECT * FROM topics ORDER BY name")
+        .then((result) => {
+          const topics = result.rows;
+          let templateVars = { resource: resource, topics: topics, timeago: timeago };
+          res.render("edit", templateVars);
+        })
+    })
 });
 
 app.post('/resources/:id/edit', (req, res) => {
