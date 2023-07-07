@@ -121,7 +121,7 @@ app.post('/resources/:id/edit', (req, res) => {
   const rating = req.body.rating;
   const liked = req.body.liked;
   pool.query(`
-    UPDATE resources SET users_id = $1, url = $2, title = $3, description = $4, category = $5, rating = $6, liked = $7 WHERE id = $8`, [1, url, title, description, category, rating, liked, req.params.id])
+    UPDATE resources SET url = $1, title = $2, description = $3, category = $4, rating = $5, liked = $6 WHERE id = $7`, [url, title, description, category, rating, liked, req.params.id])
     .then((result) => {
       res.redirect("/");
     })
