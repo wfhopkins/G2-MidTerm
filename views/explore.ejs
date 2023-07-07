@@ -46,16 +46,21 @@
           <h3><%= resources[index]["title"] %></h3>
           <p><%= resources[index]["description"] %></p>
         </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resources[index]["url"] %> sandbox>
-        </iframe>
+        <div style="
+        display: flex; width: 100%; height: 100%; background-image:
+        url('<%= resources[index]["thumbnail_path"].replace('/public/', '/') %>');
+        background-size: cover;
+        background-repeat: no-repeat;
+        ">
+      </div>
         <p><%= timeago.format(new Date(resources[index]["created_at"])) %> by @<%= resources[index]["username"] %></p>
         <section id="resource-subscript">
-          <div id="icons">          
+          <div id="icons">
             <button>
-              <a href="<%= resources[index]["url"] %>" target="_blank" class="icon"><i class="fa-solid fa-glasses"></i></a>
+              <a href="<%= resources[index]['url'] %>" target="_blank" class="icon"><i class="fa-solid fa-glasses"></i></a>
             </button>
             <button>
-              <a href="resources/<%= resources[index]["id"]%>" class="icon"><i class="fa fa-paper-plane"></i></a>
+              <a href="resources/<%= resources[index]['id']%>" class="icon"><i class="fa fa-paper-plane"></i></a>
             </button>
           </div>
         </section>

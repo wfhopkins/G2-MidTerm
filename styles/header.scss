@@ -7,7 +7,7 @@ header {
   height: 200px;
   width: 100vw;
   border: 0.5em;
-  border-style: solid;
+  // border-style: solid;
   position: fixed;
   z-index: 2;
 }
@@ -45,7 +45,7 @@ header {
   height: 80px;
   border-radius: 50%;
   border-style: solid;
-  margin-bottom: -15px;
+  margin-bottom: -1em;
 }
 
 .button_secondary {
@@ -56,9 +56,9 @@ header {
 
 .selectors {
   display: flex;
-  margin-top: 10px;
+  margin-top: 1em;
   width: 90%;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
@@ -67,13 +67,14 @@ header {
 }
 .search_bar {
   padding: 5px;
-  width: 80%;
+  width: 100%;
   background-color: lightgray;
   border-radius: 20px;
 }
 
 .topics {
-  width: 10%;
+  display: flex;
+  width: 15%;
 }
 
 #account {

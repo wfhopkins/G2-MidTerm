@@ -83,7 +83,6 @@ app.post('/create', (req, res) => {
   const description = req.body.description;
   const topic = req.body.topic;
 
-  // console.log("test", url);
   //1. After getting all the values from the Form, we are going to insert it into the Database table
   //Insert Query for the table
   pool.query(`
@@ -138,7 +137,6 @@ app.get('/resources/:id', (req, res) => {
       const comments = result[1].rows;
       const likes = result[2].rows[0].total_likes;
       const topics = result[3].rows;
-      console.log("comments", comments);
       let templateVars = { resource: resource, comments: comments, likes: likes, topics: topics, timeago: timeago };
       res.render("resource", templateVars);
     })
@@ -161,7 +159,6 @@ app.post('/resources/:id/edit', (req, res) => {
   const url = req.body.url;
   const title = req.body.title;
   const description = req.body.description;
-  const category = req.body.category;
   const rating = req.body.rating;
   const liked = req.body.liked;
   pool.query(`
