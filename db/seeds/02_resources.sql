@@ -1,9 +1,9 @@
 INSERT INTO resources (users_id, thumbnail_path, url, title, description,                                   category, rating) VALUES
-(1, '/public/images/thumbs/khanacademy.jpg' ,'https://khanacademy.org', 'Khan Academy', 'Free online educational resource',              0,    5),
-(2, '/public/images/thumbs/coursera.jpg' ,'https://coursera.org', 'Coursera', 'Online courses from top universities',                 0,    5),
+(1, '/public/images/thumbs/khanacademy.jpg' ,'http://khanacademy.org', 'Khan Academy', 'Free online educational resource',              0,    5),
+(2, '/public/images/thumbs/coursera.jpg' ,'http://coursera.org', 'Coursera', 'Online courses from top universities',                 0,    5),
 (3, '/public/images/thumbs/edx.jpg' ,'http://edx.org', 'edX', 'Online learning platform',                                       0,    5),
 (4, '/public/images/thumbs/udemy.jpg' ,'http://udemy.com', 'Udemy', 'Online courses for all levels',                              0,    5),
-(5, '/public/images/thumbs/codecademy.jpg' ,'HTTP://codecademy.com', 'Codecademy', 'Learn to code interactively',                      0,    5),
+(5, '/public/images/thumbs/codecademy.jpg' ,'http://codecademy.com', 'Codecademy', 'Learn to code interactively',                      0,    5),
 (6, '/public/images/thumbs/udacity.jpg' ,'http://udacity.com', 'Udacity', 'Nanodegree programs and free courses',                   0,    5),
 (7, '/public/images/thumbs/linkedinlearning.jpg' ,'http://lynda.com', 'Lynda', 'Online video tutorials',                                     0,    5),
 (8, '/public/images/thumbs/skillshare.jpg' ,'http://skillshare.com', 'Skillshare', 'Online classes and projects',                      0,    5),

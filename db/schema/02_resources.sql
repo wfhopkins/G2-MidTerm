@@ -9,5 +9,5 @@ CREATE TABLE  resources (
   description VARCHAR(255) NOT NULL,
   category INTEGER NOT NULL DEFAULT 0,
   rating SMALLINT,
-  created_at TIMESTAMP DEFAULT Now()
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

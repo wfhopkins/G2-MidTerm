@@ -14,6 +14,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -40,29 +42,49 @@
   <main id="main_container">
       <article class="resource">
         <section id="resource-superscript">
-          <h3><%= resource["title"] %></h3>
-          <p><%= resource["description"] %></p>
+          <h3>
+            <%= resource["title"] %>
+          </h3>
+          <p>
+            <%= resource["description"] %>
+          </p>
         </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resource["url"] %> sandbox>
+        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%=resource["url"] %> sandbox>
         </iframe>
-        <p><%= resource["time_ago"] %> by @<%= users["1"]["username"] %></p>
+        <p>
+          <%= timeago.format(new Date(resource["created_at"])) %> by @<%= resource["username"] %>
+        </p>
         <section id="resource-subscript">
-          <p><%= resource["likes"] %> likes, <%= resource["likes"] - 8%> comments</p>
+          <p><%= likes %> likes, <%= comments.length %> comments</p>
           <div id="icons">
             <button>
               <i class="fas fa-heart"></i>
             </button>
             <!-- <a href="/like" class="icon"><i class="fas fa-heart"></i></a> -->
             <button>
-              <a href="/resource["id"]/comments" class="icon"><i class="fa-solid fa-comment"></i></a>              
+              <a href="<%= resource['id'] %> " class="icon"><i class="fa-solid fa-comment"></i></a>
             </button>
             <button>
-              <a href="<%= resource["url"] %>" class="icon"><i class="fa-solid fa-glasses"></i></a>
+              <a href="<%= resource['url'] %>" target="_blank" class="icon"><i class="fa-solid fa-glasses"></i></a>
             </button>
           </div>
         </section>
       </article>
-      
+      <article id="resource-alter-buttons">
+        <form method="GET" action="/resources/<%= resource["id"] %>/edit">
+          <button type="submit" class='btn btn-primary'>Edit</button>
+        </form>
+        <form method="POST" action="/resources/<%= resource["id"] %>/delete">
+          <button type="submit" class='btn btn-danger'>Delete</button>
+        </form>
+      </article>
+      <article class="comments-feed">
+        <%= comments.length %>
+          <%for (const comment of comments) {%>
+            <p><%= comment.comment%></p>
+          <% }%>
+      </article>
+
 
     </main>
 </body>

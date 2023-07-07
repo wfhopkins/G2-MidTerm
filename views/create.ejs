@@ -42,17 +42,28 @@
     <main id="create_container">
       <h3>Create new Resource</h3>
       <form class="new_resource" method="POST" action="/create">
-        <label for="url-input">URL</label>
+        <!-- <label for="url-input">URL</label> -->
+        <br/>
         <input id="url-input" type="url" name="url" placeholder="New URL">
         <br/>
-        <label for="title-input">Title</label>
+        <!-- <label for="title-input">Title</label> -->
         <input id="title-input" type="title" name="title" placeholder="Title">
         <br/>
-        <label for="description-input">Description</label>
+        <!-- <label for="description-input">Description</label> -->
         <input id="description-input" type="description" name="description" placeholder="Description">
         <br/>
-        <label for="type-input">Type</label>
-        <input id="type-input" type="type" name="category" placeholder="Type (video, blog, image...)">
+        <!-- <label for="type-input">Type</label> -->
+        <!-- <input id="category-input" type="category" name="category" placeholder="Media Category">
+        <br/> -->
+        <!-- <label for="topic-input">Topic</label> -->
+        <!-- <input id="topic-input" type="topic" name="topic" placeholder="Select a Topic"> -->
+        <select name="topics" id="topics">
+          <option value="" disabled selected>Topics</option>
+          <% for (const topic of topics) { %>
+            <option value="<%= topic.id %>"><%= topic.name %></option>
+          <% } %>
+
+        </select>
         <br/>
         <button type="submit" id="create_submit" class="button_secondary">Submit</button>
       </form>
