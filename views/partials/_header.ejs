@@ -1,19 +1,25 @@
 <header>
     <div class="menu">
       <span id="logo">RESOURCE WALL</span>
-      <form method="GET" action="/">
-        <button type="submit" id="menu_home" class="button_primary">HOME</button>
+      <form method="GET" action="/explore">
+        <button type="submit" id="explore" class="button_primary">EXPLORE</button>
       </form>
       <form method="GET" action="/create">
         <button type="submit" id="menu_create" class="button_primary">CREATE</button>
       </form>
-      <form method="GET" action="/explore">
-        <button type="submit" id="explore" class="button_primary">EXPLORE</button>
+      <form method="GET" action="/">
+        <button type="submit" id="menu_home" class="button_primary">HOME</button>
       </form>
       <div class="account_avatar">
         <img src="/images/profile-hex.png" class="avatar">
         <form method="GET" action="/account">
-          <button type="submit" id="account" class="button_secondary">ACCOUNT</button>
+          <select name="account" id="account">
+            <option value="" disabled selected>ACCOUNT</option>
+            <option value="settings">Settings</option>
+            <option value="edit">Edit Profile</option>
+            <option value="logout">Report a Problem</option>
+            <option value="logout">Logout</option>
+          </select>
         </form>
       </div>
     </div>
@@ -23,11 +29,10 @@
       </form>
       <form class="topics" method="POST" action="/topics">
         <select name="topics" id="topics">
-          <option value="" disabled selected>Topics</option>
+          <option value="" disabled selected>TOPICS</option>
           <% for (const topic of topics) { %>
             <option value="<%= topic.id %>"><%= topic.name %></option>
           <% } %>
-
         </select>
         <button type="submit">Go!</button>
       </form>

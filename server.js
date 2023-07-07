@@ -104,7 +104,8 @@ app.post('/create', (req, res) => {
 
 app.post('/topics', (req, res) => {
   // pool.query(`
-  //   SELECT * FROM topics
+  //  SELECT * FROM topics
+  //  WHERE topics = req.???
   // `)
   console.log(req.body);
 })
