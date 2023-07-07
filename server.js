@@ -54,10 +54,10 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-
-  const resourcesPromise = pool.query("SELECT resources.*, users.username as username FROM resources JOIN users ON users.id = users_id")
+  const id = 1;
+  const resourcesPromise = pool.query("SELECT resources.*, users.username as username FROM resources JOIN users ON users.id = users_id WHERE users.id = $1", [id]);
   const topicsPromise = pool.query("SELECT * FROM topics ORDER BY name")
-  const promises = [resourcesPromise, topicsPromise]
+  const promises = [resourcesPromise, topicsPromise];
 
   Promise.all(promises)
     .then((result) => {
@@ -112,15 +112,15 @@ app.post('/topics', (req, res) => {
 
 app.get('/explore', (req, res) => {
   pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
-  .then((result) => {
-    const resources = result.rows;
-    pool.query("SELECT * FROM topics ORDER BY name")
-      .then((result) => {
-        const topics = result.rows;
-        let templateVars = { resources: resources, topics: topics, timeago: timeago };
-        res.render("explore", templateVars);
-      })
-  })
+    .then((result) => {
+      const resources = result.rows;
+      pool.query("SELECT * FROM topics ORDER BY name")
+        .then((result) => {
+          const topics = result.rows;
+          let templateVars = { resources: resources, topics: topics, timeago: timeago };
+          res.render("explore", templateVars);
+        })
+    })
 });
 
 app.get('/resources/:id', (req, res) => {

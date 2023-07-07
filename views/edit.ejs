@@ -43,22 +43,22 @@
       <h3>Edit a Resource</h3>
       <form class="edit_resource" method="POST" action="/resources/<%= resource["id"] %>/edit">
         <label for="url-input">URL</label>
-        <input id="url-input" type="url" name="url" placeholder="<%= resource["url"] %>">
+        <input id="url-input" type="url" name="url" value="<%= resource["url"] %>">
         <br/>
         <label for="title-input">Title</label>
-        <input id="title-input" type="title" name="title" placeholder="<%= resource["title"] %>">
+        <input id="title-input" type="title" name="title" value="<%= resource["title"] %>">
         <br/>
         <label for="description-input">Description</label>
-        <input id="description-input" type="description" name="description" placeholder="<%= resource["description"] %>">
+        <input id="description-input" type="description" name="description" value="<%= resource["description"] %>">
         <br/>
         <label for="category-input">Category</label>
-        <input id="category-input" type="category" name="category" placeholder="<%= resource["category"] %>">
+        <input id="category-input" type="category" name="category" value="<%= resource["category"] %>">
         <br/>
         <label for="rating-input">Rating</label>
-        <input id="rating-input" type="rating" name="rating" placeholder="<%= resource["rating"] %>">
+        <input id="rating-input" type="rating" name="rating" value="<%= resource["rating"] %>">
         <br/>
         <label for="liked-input">Liked</label>
-        <input id="liked-input" type="liked" name="liked" placeholder="<%= resource["liked"] %>">
+        <input id="liked-input" type="liked" name="liked" value="<%= resource["liked"] %>">
         <br/>
         <button type="submit" id="create_submit" class="button_secondary">Submit</button>
       </form>
