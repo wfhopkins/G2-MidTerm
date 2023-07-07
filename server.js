@@ -54,124 +54,6 @@ app.use('/users', usersRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-
-// // Our database of users
-let users = {
-  "1": {
-    id: "1",
-    username: "user1",
-    email: "user1@example.com",
-    password: "purple-rabbit-dinosaur",
-    first_name: "David",
-    last_name: "Fatokun"
-  },
-  "2": {
-    id: "2",
-    username: "user2",
-    email: "user2@example.com",
-    password: "purple-dinosaur",
-    first_name: "William",
-    last_name: "Hopkins"
-  },
-  "3": {
-    id: "3",
-    username: "user3",
-    email: "user3@example.com",
-    password: "rabbit-dinosaur",
-    first_name: "Jordan",
-    last_name: "Dennis"
-  }
-};
-
-let resources = {
-  "1": {
-    id: "1",
-    users_id: "1",
-    url: "https://en.wikipedia.org/wiki/Bulldog",
-    title: "Bulldogs",
-    description: "The Bulldog is a British breed of dog of mastiff type. It may also be known as the English Bulldog or British Bulldog. It is a medium sized, muscular dog of around 40–55 lb (18–25 kg)",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 22,
-    created_at: "1687836872069"
-  },
-  "2": {
-    id: "2",
-    users_id: "2",
-    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-    title: "Space",
-    description: "Best space photos from last year",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 18,
-    created_at: "1687836872069"
-  },
-  "3": {
-    id: "3",
-    users_id: "3",
-    url: "https://en.wikipedia.org/wiki/Giraffe",
-    title: "Giraffes",
-    description: "Everything about giraffes",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 16,
-    created_at: "1687836872069"
-  },
-  "4": {
-    id: "4",
-    users_id: "2",
-    url: "https://www.cnn.com/interactive/2022/12/world/best-space-photos-2022/index.html",
-    title: "Bulldogs",
-    description: "Everything about bulldogs",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 12,
-    created_at: "1687836872069"
-  },
-  "5": {
-    id: "5",
-    users_id: "3",
-    url: "https://en.wikipedia.org/wiki/Giraffe",
-    title: "Giraffes",
-    description: "Everything about giraffes",
-    type: "Encyclopedia",
-    rating: 7,
-    like: true,
-    likes: 10,
-    created_at: "1687836872069"
-  }
-};
-
-let resources_topics = {
-  "1": {
-    id: "1",
-    resources_id: "1",
-    topics_id: "1"
-  }
-};
-
-let topics = {
-  "1": {
-    id: "1",
-    name: "Dogs",
-    resources_id: "1"
-  }
-};
-
-let comments = {
-  "1": {
-    id: "1",
-    users_id: "1",
-    resources_id: "1",
-    comment: "I Love bulldogs"
-  }
-};
-
-
 app.get('/', (req, res) => {
   pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
     .then((result) => {
@@ -223,25 +105,30 @@ app.get('/resources/:id', (req, res) => {
 });
 
 app.get('/resources/:id/edit', (req, res) => {
-  let id = req.params.id;
-  let resource = resources[id];
-  // console.log(resource);
-  resource["time_ago"] = timeago.format(resource["created_at"]);
-  const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
-  res.render("resource", templateVars);
+  pool.query("SELECT * FROM resources JOIN users ON users.id = users_id WHERE resources.id = $1", [req.params.id])
+    .then((result) => {
+      const resource = result.rows[0];
+      let templateVars = { resource: resource, timeago: timeago };
+      res.render("edit", templateVars);    
+    })
 });
 
 app.post('/resources/:id/edit', (req, res) => {
-  let id = req.params.id;
-  let resource = resources[id];
-  // console.log(resource);
-  resource["time_ago"] = timeago.format(resource["created_at"]);
-  const templateVars = { users: users, resource: resource, resources_topics: resources_topics, topics: topics, comments: comments };
-  res.render("resource", templateVars);
+  const url = req.body.url;
+  const title = req.body.title;
+  const description = req.body.description;
+  const category = req.body.category;
+  const rating = req.body.rating;
+  const liked = req.body.liked;
+  pool.query(`
+    UPDATE resources SET url = $1, title = $2, description = $3, category = $4, rating = $5, liked = $6 WHERE id = $7`, [url, title, description, category, rating, liked, req.params.id])
+    .then((result) => {
+      res.redirect("/");
+    })
 });
 
 app.post('/resources/:id/delete', (req, res) => {
-  pool.query("DELETE FROM resources WHERE resources.id = $1", [req.params.id])
+  pool.query("DELETE FROM resources WHERE id = $1", [req.params.id])
     .then(() => {
       res.redirect("/");
     })
