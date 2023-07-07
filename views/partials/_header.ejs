@@ -18,9 +18,26 @@
       </div>
     </div>
     <div class="selectors">
-      <input class="search_bar" type="text" placeholder="Search">
-      <form class="topics" method="GET" action="/topics">
-        <button class="button_secondary">TOPICS</button>
+      <form class="search">
+        <input class="search_bar" type="text" placeholder="Search">
+      </form>
+      <form class="topics" method="POST" action="/topics">
+        <select name="topics" id="topics">
+          <option value="" disabled selected>Topics</option>
+          <% for (const topic of topics) { %>
+            <option value="<%= topic.id %>"><%= topic.name %></option>
+          <% } %>
+
+        </select>
+        <button type="submit">Go!</button>
       </form>
     </div>
 </header>
+
+
+
+<!-- html for making dropdown
+  <button class="button_secondary">TOPICS</button>
+  <label for="cars">Choose a car:</label>
+
+ -->
