@@ -69,19 +69,20 @@
             </button>
           </div>
         </section>
+        <article id="resource-alter-buttons">
+          <form method="GET" action="/resources/<%= resource["id"] %>/edit">
+            <button type="submit" class='btn btn-primary'>Edit</button>
+          </form>
+          <form method="POST" action="/resources/<%= resource["id"] %>/delete">
+            <button type="submit" class='btn btn-danger'>Delete</button>
+          </form>
+        </article>
+
       </article>
-      <article id="resource-alter-buttons">
-        <form method="GET" action="/resources/<%= resource["id"] %>/edit">
-          <button type="submit" class='btn btn-primary'>Edit</button>
-        </form>
-        <form method="POST" action="/resources/<%= resource["id"] %>/delete">
-          <button type="submit" class='btn btn-danger'>Delete</button>
-        </form>
-      </article>
+      
       <article class="comments-feed">
-        <%= comments.length %>
           <%for (const comment of comments) {%>
-            <p><%= comment.comment%></p>
+            <p>@<%= comment.username%> --> <%= comment.comment%> </p>
           <% }%>
       </article>
 
