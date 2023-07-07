@@ -7,7 +7,6 @@ CREATE TABLE  resources (
   thumbnail_path VARCHAR(255) DEFAULT '/public/images/thumbs/default.png',
   title VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
-  category INTEGER NOT NULL DEFAULT 0,
   rating SMALLINT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
