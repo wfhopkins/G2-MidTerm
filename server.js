@@ -66,6 +66,14 @@ app.get('/', (req, res) => {
       let templateVars = { resources: resources, topics: topics, timeago: timeago };
       res.render("home", templateVars);
     })
+
+
+  // const id = 1;
+  // const resourcesPromise = pool.query("SELECT resources.*, users.username as username FROM resources JOIN users ON users.id = users_id WHERE users_id = $1", [id]);
+  // const topicsPromise = pool.query("SELECT * FROM topics ORDER BY name")
+  // const commentPromise = pool.query("SELECT *, users.id as user_id FROM comments JOIN resources ON resources.id = comments.resources_id JOIN users ON users.id = resources.users_id WHERE user_id = $1", [id])
+  // const likesPromise = pool.query("SELECT DISTINCT count(*) as total_likes FROM likes JOIN resources ON resources.id = comments.resources_id JOIN users ON users.id = resources.users_id WHERE users.id = $1", [id])
+  // const promises = [resourcesPromise, topicsPromise, commentPromise, likesPromise];
 });
 
 app.get('/create', (req, res) => {
@@ -111,20 +119,22 @@ app.post('/topics', (req, res) => {
 
 
 app.get('/explore', (req, res) => {
+  // const resourcesPromise = pool.query("SELECT resources.*, users.username as username FROM resources JOIN users ON users.id = users_id WHERE users.id = $1", [id]);
   pool.query("SELECT * FROM resources JOIN users ON users.id = users_id")
     .then((result) => {
       const resources = result.rows;
+      console.log(resources);
       pool.query("SELECT * FROM topics ORDER BY name")
         .then((result) => {
           const topics = result.rows;
           let templateVars = { resources: resources, topics: topics, timeago: timeago };
+          console.log(templateVars);
           res.render("explore", templateVars);
         })
     })
 });
 
 app.get('/resources/:id', (req, res) => {
-
   const resourcePromise = pool.query("SELECT * FROM resources JOIN users ON users.id = users_id WHERE resources.id = $1", [req.params.id])
   const commentPromise = pool.query("SELECT * FROM comments JOIN users ON users.id = users_id WHERE resources_id = $1", [req.params.id])
   const likesPromise = pool.query("SELECT DISTINCT count(*) as total_likes FROM likes WHERE resources_id = $1", [req.params.id])
@@ -160,18 +170,17 @@ app.post('/resources/:id/edit', (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
   const rating = req.body.rating;
-  const liked = req.body.liked;
   pool.query(`
-    UPDATE resources SET url = $1, title = $2, description = $3, category = $4, rating = $5, liked = $6 WHERE id = $7`, [url, title, description, category, rating, liked, req.params.id])
+    UPDATE resources SET url = $1, title = $2, description = $3, rating = $4, WHERE id = $5`, [url, title, description, rating, req.params.id])
     .then((result) => {
-      res.redirect("/");
+      res.redirect("/create");
     })
 });
 
 app.post('/resources/:id/delete', (req, res) => {
   pool.query("DELETE FROM resources WHERE id = $1", [req.params.id])
     .then(() => {
-      res.redirect("/");
+      res.redirect("/explore");
     })
 });
 
