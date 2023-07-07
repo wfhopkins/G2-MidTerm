@@ -39,8 +39,7 @@
 
 <body>
   <%- include('partials/_header') %>
-    <main id="main_container">
-      
+  <main id="main_container">
       <article class="resource">
         <section id="resource-superscript">
           <h3>
@@ -56,17 +55,17 @@
           <%= timeago.format(new Date(resource["created_at"])) %> by @<%= resource["username"] %>
         </p>
         <section id="resource-subscript">
-          <!-- <p><%= resource["likes"] %> likes, <%= resource["likes"] - 8%> comments</p> -->
+          <p><%= likes %> likes, <%= comments.length %> comments</p>
           <div id="icons">
             <button>
               <i class="fas fa-heart"></i>
             </button>
             <!-- <a href="/like" class="icon"><i class="fas fa-heart"></i></a> -->
             <button>
-              <a href="<%= resource["id"] %> " class="icon"><i class="fa-solid fa-comment"></i></a>
+              <a href="<%= resource['id'] %> " class="icon"><i class="fa-solid fa-comment"></i></a>
             </button>
-            <button> 
-              <a href="<%= resource["url"] %>" target="_blank" class="icon"><i class="fa-solid fa-glasses"></i></a>
+            <button>
+              <a href="<%= resource['url'] %>" target="_blank" class="icon"><i class="fa-solid fa-glasses"></i></a>
             </button>
           </div>
         </section>
@@ -78,6 +77,12 @@
         <form method="POST" action="/resources/<%= resource["id"] %>/delete">
           <button type="submit" class='btn btn-danger'>Delete</button>
         </form>
+      </article>
+      <article class="comments-feed">
+        <%= comments.length %>
+          <%for (const comment of comments) {%>
+            <p><%= comment.comment%></p>
+          <% }%>
       </article>
 
 
