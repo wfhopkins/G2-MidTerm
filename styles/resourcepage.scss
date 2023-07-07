@@ -39,12 +39,6 @@
 }
 
 
-iframe {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 #resource-superscript {
   font-family: "Source Sans 3", sans-serif;
   font-size: 16px;
@@ -76,7 +70,7 @@ iframe {
 main button {
   // margin: 10px;
   // padding: 10px;
-  font-size: 20px;
+  // font-size: 20px;
   border:none;
   color: orange;
   background-color: transparent;
@@ -89,7 +83,6 @@ main button:hover {
 
 #resource-alter-buttons {
   font-family: "Source Sans 3", sans-serif;
-  
   display: flex;
   width: 90%;
   flex-direction: row;
