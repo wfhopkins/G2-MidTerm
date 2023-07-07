@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Resource Wall - Home Page</title>
+  <title>Resource Wall - Create</title>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,6 @@
   <link rel="stylesheet" href="/styles/home.css" />
   <link rel="stylesheet" href="/styles/create.css" />
   <link rel="stylesheet" href="/styles/resource.css" />
-  <link rel="stylesheet" href="/styles/explore.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/header.js"></script>
@@ -39,29 +38,32 @@
 
 <body>
   <%- include('partials/_header') %>
-  <main id="main_container">
-    <% for (let index = (resources.length-1); index >= 0; index--) { %>
-      <article class="resource">
-        <section id="resource-superscript">
-          <h3><%= resources[index]["title"] %></h3>
-          <p><%= resources[index]["description"] %></p>
-        </section>
-        <iframe id="inlineFrameExample" title="Inline Frame Example" scrolling="no" src=<%= resources[index]["url"] %> sandbox>
-        </iframe>
-        <p><%= timeago.format(new Date(resources[index]["created_at"])) %> by @<%= resources[index]["username"] %></p>
-        <section id="resource-subscript">
-          <div id="icons">          
-            <button>
-              <a href="<%= resources[index]["url"] %>" target="_blank" class="icon"><i class="fa-solid fa-glasses"></i></a>
-            </button>
-            <button>
-              <a href="resources/<%= resources[index]["id"]%>" class="icon"><i class="fa fa-paper-plane"></i></a>
-            </button>
-          </div>
-        </section>
-      </article>
-    <% } %>
+
+    <main id="create_container">
+      <h3>Edit a Resource</h3>
+      <form class="edit_resource" method="POST" action="/resources/<%= resource["id"] %>/edit">
+        <label for="url-input">URL</label>
+        <input id="url-input" type="url" name="url" placeholder="<%= resource["url"] %>">
+        <br/>
+        <label for="title-input">Title</label>
+        <input id="title-input" type="title" name="title" placeholder="<%= resource["title"] %>">
+        <br/>
+        <label for="description-input">Description</label>
+        <input id="description-input" type="description" name="description" placeholder="<%= resource["description"] %>">
+        <br/>
+        <label for="category-input">Category</label>
+        <input id="category-input" type="category" name="category" placeholder="<%= resource["category"] %>">
+        <br/>
+        <label for="rating-input">Rating</label>
+        <input id="rating-input" type="rating" name="rating" placeholder="<%= resource["rating"] %>">
+        <br/>
+        <label for="liked-input">Liked</label>
+        <input id="liked-input" type="liked" name="liked" placeholder="<%= resource["liked"] %>">
+        <br/>
+        <button type="submit" id="create_submit" class="button_secondary">Submit</button>
+      </form>
     </main>
+
 </body>
 
 </html>
